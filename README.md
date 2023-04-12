@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/FaithGamer/ExtendedRuleTile/blob/master/header.png?raw=true)
 
-Better rule tile for Unity allowing bigger pattern than tile size.
+Better rule tile for Unity allowing larger pattern than tile size.
 Theses script are a copy from the original Unity Package, but with some twist.
 
 Once added in your project, you can create an Extended Rule Tile in the create asset menu.
