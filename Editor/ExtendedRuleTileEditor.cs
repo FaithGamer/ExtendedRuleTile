@@ -891,10 +891,19 @@ namespace UnityEditor
                 GUI.Label(new Rect(rect.xMin, y, k_LabelWidth, k_SingleLineHeight), Styles.tilingRulesExtendDimension);
                 tilingRule.m_ExtendSize.x = EditorGUI.IntField(new Rect(rect.xMin + k_LabelWidth, y, (rect.width - k_LabelWidth)/2, k_SingleLineHeight), tilingRule.m_ExtendSize.x);
                 tilingRule.m_ExtendSize.y = EditorGUI.IntField(new Rect((rect.width - k_LabelWidth)/2 + rect.xMin + k_LabelWidth, y, (rect.width - k_LabelWidth)/2, k_SingleLineHeight), tilingRule.m_ExtendSize.y);
-                y += k_SingleLineHeight;
+                Array.Resize(ref tilingRule.m_Sprites, tilingRule.m_ExtendSize.x * tilingRule.m_ExtendSize.y);
+                 y += k_SingleLineHeight;
+               /* for (int i = 0; i < tilingRule.m_Sprites.Length; i++)
+                {
+                    tilingRule.m_Sprites[i] = EditorGUI.ObjectField(new Rect(rect.xMin + k_LabelWidth, y, rect.width - k_LabelWidth, k_SingleLineHeight), tilingRule.m_Sprites[i], typeof(Sprite), false) as Sprite;
+                    y += k_SingleLineHeight;
+                }*/
+               
             }
             if (tilingRule.m_Output != ExtendedRuleTile.TilingRuleOutput.OutputSprite.Single)
             {
+                if(tilingRule.m_Output != ExtendedRuleTile.TilingRuleOutput.OutputSprite.Extended)
+                {
                 GUI.Label(new Rect(rect.xMin, y, k_LabelWidth, k_SingleLineHeight)
                     , tilingRule.m_Output == ExtendedRuleTile.TilingRuleOutput.OutputSprite.Animation ? Styles.tilingRulesAnimationSize : Styles.tilingRulesRandomSize);
                 EditorGUI.BeginChangeCheck();
@@ -902,7 +911,7 @@ namespace UnityEditor
                 if (EditorGUI.EndChangeCheck())
                     Array.Resize(ref tilingRule.m_Sprites, Math.Max(newLength, 1));
                 y += k_SingleLineHeight;
-
+                }
                 for (int i = 0; i < tilingRule.m_Sprites.Length; i++)
                 {
                     tilingRule.m_Sprites[i] = EditorGUI.ObjectField(new Rect(rect.xMin + k_LabelWidth, y, rect.width - k_LabelWidth, k_SingleLineHeight), tilingRule.m_Sprites[i], typeof(Sprite), false) as Sprite;
